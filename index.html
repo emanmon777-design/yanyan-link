@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hi Yanyan! Will you be my Valentine?</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      background: linear-gradient(#ffb6c1, #ff69b4);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: 'Comic Sans MS', cursive;
+    }
+
+    .card {
+      background: white;
+      padding: 5vw;
+      border-radius: 5vw;
+      text-align: center;
+      box-shadow: 0 5vw 10vw rgba(0,0,0,0.2);
+      width: 80vw;
+      max-width: 360px;
+    }
+
+    h1 {
+      color: #ff4d6d;
+      margin-bottom: 1vh;
+      font-size: 5vw;
+    }
+
+    p {
+      margin: 2vh 0;
+      font-size: 4vw;
+      line-height: 1.4;
+    }
+
+    .buttons {
+      margin-top: 4vh;
+      position: relative;
+      height: 10vh;
+    }
+
+    button {
+      border: none;
+      padding: 3vw 5vw;
+      border-radius: 10vw;
+      font-size: 4vw;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    #yes {
+      background: #ff4d6d;
+      color: white;
+      margin-right: 2vw;
+    }
+
+    #no {
+      background: #ffe3ea;
+      color: #ff4d6d;
+      font-size: 3.5vw;
+      padding: 2.5vw 4vw;
+      position: absolute;
+      right: 0;
+      top: 0;
+    }
+
+    @media (min-width: 400px) {
+      h1 { font-size: 20px; }
+      p { font-size: 16px; }
+      button { font-size: 16px; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <h1>Hi Yanyan! 💕</h1>
+    <p>Will you be my Valentine on Saturday lunch/dinner online date? 🥺💗</p>
+
+    <div class="buttons">
+      <button id="yes" onclick="yesClick()">YES 💖</button>
+      <button id="no" onclick="noClick()">no 😅</button>
+    </div>
+  </div>
+
+  <script>
+    const noMessages = [
+      "Please say yes 🥺",
+      "I really want to see you 😢",
+      "Come on, say yes 💕",
+      "I’ll be so sad if you say no 😭",
+      "I promise fun online date 😌"
+    ];
+    let noIndex = 0;
+
+    function yesClick() {
+      document.body.innerHTML = `
+        <div style="
+          height:100vh;
+          display:flex;
+          justify-content:center;
+          align-items:center;
+          flex-direction:column;
+          background:#ff69b4;
+          color:white;
+          font-family:'Comic Sans MS', cursive;
+          text-align:center;
+          padding:5vw;
+        ">
+          <h1>YAAAY 💕</h1>
+          <h2 style="font-size:5vw;">See you online this Saturday! 🥰</h2>
+          <p style="font-size:4vw;">– Manman</p>
+        </div>
+      `;
+    }
+
+    function noClick() {
+      const noBtn = document.getElementById("no");
+      noBtn.innerText = noMessages[noIndex];
+      noIndex = (noIndex + 1) % noMessages.length;
+      // small shake effect for extra cuteness
+      noBtn.style.transform = "translateX(-5px)";
+      setTimeout(() => { noBtn.style.transform = "translateX(5px)"; }, 100);
+      setTimeout(() => { noBtn.style.transform = "translateX(0px)"; }, 200);
+    }
+  </script>
+
+</body>
+</html>
